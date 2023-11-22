@@ -54,11 +54,11 @@ const PrimarySlider = () => {
           <ArrowLeft />
         </SliderButton>
         <Slider {...settings}>
-          <img src="./img/slider/img1.webp" className="slider-image" />
-          <img src="./img/slider/img2.webp" className="slider-image" />
-          <img src="./img/slider/img3.webp" className="slider-image"/>
-          <img src="./img/slider/img4.webp" className="slider-image"/>
-          <img src="./img/slider/img5.webp" className="slider-image"/>
+          <img src="./img/slider/img1.webp" className="slider-image" alt="slider1" />
+          <img src="./img/slider/img2.webp" className="slider-image" alt="slider2"/>
+          <img src="./img/slider/img3.webp" className="slider-image" alt="slider3"/>
+          <img src="./img/slider/img4.webp" className="slider-image" alt="slider4"/>
+          <img src="./img/slider/img5.webp" className="slider-image" alt="slider5"/>
         </Slider>
         <SliderButton direction="right">
           <ArrowRight />
