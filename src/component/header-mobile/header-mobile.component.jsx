@@ -6,7 +6,6 @@ import {
   CartIcon,
   Center,
   Container,
-  IconMenu,
   IconWrapper,
   Input,
   InputContainer,
