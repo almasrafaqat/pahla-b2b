@@ -1,16 +1,20 @@
 import styled from "styled-components";
+import { Mobile } from "../../responsive";
 
 
-export const HeaderSection = styled.section`
+export const NavbarContainer = styled.section`
    margin-top: 2%;
 `;
 
-export const Header = styled.div`
+export const HeaderWrapper = styled.div`
    max-width: 80%;
    margin: 0 auto;
    display: flex;
    align-items: center;
    justify-content: space-between;
+   flex-wrap: wrap;
+
+   ${Mobile({border:"1px solid"})}
 `;
 
 export const Navigation = styled.nav`
