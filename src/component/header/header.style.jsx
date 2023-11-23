@@ -10,8 +10,8 @@ export const Header = styled.header`
   background-color: #fff;
   padding: 0.7rem;
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
 `;
 
@@ -21,20 +21,15 @@ export const Logo = styled.img`
   border-radius: 5px 0 0 0;
 `;
 
-export const Navigation = styled.nav`
-  ul {
-      list-style-type: none;
-      display: flex;
-    }
 
-    ul li {
-      margin-right: 1rem;
-      cursor: pointer;
-      font-size: 1.2rem;
+export const AccountLinks = styled.div`
+    svg{
+      margin-right: 15px;
     }
+    svg:last-child {
+    margin-right: 0;
+  } 
 `;
-
-
 
 
 

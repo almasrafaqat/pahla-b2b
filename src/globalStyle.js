@@ -1,4 +1,4 @@
-import { ArrowLeftOutlined, ArrowRightOutlined, SearchOutlined } from "@mui/icons-material";
+import { AddTask, ArrowLeftOutlined, ArrowRightOutlined, DevicesFold, DraftsOutlined, PeopleAltOutlined, SearchOutlined, ShoppingBasket } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import { IpadTablets, Mobile } from "./responsive";
@@ -38,13 +38,6 @@ export const theme = {
 export const Link = styled(NavLink)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.black};
-  transition: ${({ theme }) => theme.colors.transition};;
-
-  &:hover{
-    background-color: ${({ theme }) => theme.colors.primary};
-    padding: 5px;
-    border-radius: 5px;
-  }
 `;
 
 export const SliderButton = styled.div`
@@ -87,6 +80,28 @@ export const ArrowLeft = styled(ArrowLeftOutlined)`
 export const IconSearch = styled(SearchOutlined)`
   font-size: 1.2rem!important;
 `
+
+export const CartIcon = styled(ShoppingBasket)`
+  font-size: 2rem!important;
+  cursor: pointer;
+`;
+export const UserIcon = styled(PeopleAltOutlined)`
+  font-size: 2rem!important;
+  cursor: pointer;
+`;
+export const DraftIcon = styled(DraftsOutlined)`
+  font-size: 2rem!important;
+  cursor: pointer;
+`;
+export const QuotationIcon = styled(AddTask)`
+  font-size: 2rem!important;
+  cursor: pointer;
+`;
+export const SampleIcon = styled(DevicesFold)`
+  font-size: 2rem!important;
+  cursor: pointer;
+`;
+
 export const SearchContainer = styled.div`
   border: 1px solid ${({theme}) => theme.colors.border};
   padding: 5px;

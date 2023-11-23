@@ -7,7 +7,7 @@ export const SliderContainer = styled.div`
    max-width: 80%;
    position: relative;
    margin: 0 auto;
-   margin-top: 4%;
+   margin-top: 2%;
    width: 100%;
 
    ${Mobile({ maxWidth: "95%" })}
