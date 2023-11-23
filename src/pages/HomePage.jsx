@@ -7,9 +7,8 @@ import Header from '../component/header/header.components';
 const HomePage = () => {
   return (
     <>
-      <div className="Desktop">
-        <Header />
-      </div>
+
+      <Header />
       <PrimarySlider />
     </>
   )

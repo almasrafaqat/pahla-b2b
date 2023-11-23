@@ -1,7 +1,8 @@
-import { AddTask, ArrowLeftOutlined, ArrowRightOutlined, DevicesFold, DraftsOutlined, PeopleAltOutlined, SearchOutlined, ShoppingBasket } from "@mui/icons-material";
+import { AddTask, ArrowLeftOutlined, ArrowRightOutlined, ClearSharp, DevicesFold, DraftsOutlined, Facebook, Instagram, MenuOutlined, PersonOutline, PlaceOutlined, SearchOutlined, ShoppingCartOutlined, TtyOutlined, Twitter, YouTube } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import { IpadTablets, Mobile } from "./responsive";
+
 
 export const GlobalStyle = createGlobalStyle`
 
@@ -81,17 +82,18 @@ export const IconSearch = styled(SearchOutlined)`
   font-size: 1.2rem!important;
 `
 
-export const CartIcon = styled(ShoppingBasket)`
+export const CartIcon = styled(ShoppingCartOutlined)`
   font-size: 2rem!important;
   cursor: pointer;
 `;
-export const UserIcon = styled(PeopleAltOutlined)`
+export const UserIcon = styled(PersonOutline)`
   font-size: 2rem!important;
   cursor: pointer;
 `;
 export const DraftIcon = styled(DraftsOutlined)`
-  font-size: 2rem!important;
+  font-size: ${(props) => props.size ? '1.5rem' : '2rem'}!important;
   cursor: pointer;
+  color: ${(props) => props.primary ? ({ theme }) => theme.colors.primary : 'black'};
 `;
 export const QuotationIcon = styled(AddTask)`
   font-size: 2rem!important;
@@ -101,15 +103,48 @@ export const SampleIcon = styled(DevicesFold)`
   font-size: 2rem!important;
   cursor: pointer;
 `;
+export const MenuIcon = styled(MenuOutlined)`
+  font-size: 2rem!important;
+  cursor: pointer;
+`;
+export const CloseIcon = styled(ClearSharp)`
+  cursor: pointer;
+
+  &:hover {
+      transform: scale(1.4);
+      transition: all 0.3s ease-in-out;
+    }
+`;
+
+export const LocationIcon = styled(PlaceOutlined)`
+    color: ${({ theme }) => theme.colors.primary};
+  `;
+
+
+export const TelephoneIcon = styled(TtyOutlined)`
+    color: ${({ theme }) => theme.colors.primary};
+  `;
+
+export const FacebookIcon = styled(Facebook)``;
+
+export const YoutubeIcon = styled(YouTube)``;
+
+export const TwitterIcon = styled(Twitter)``;
+
+export const InstagramIcon = styled(Instagram)``;
+
 
 export const SearchContainer = styled.div`
-  border: 1px solid ${({theme}) => theme.colors.border};
+  border: 1px solid ${({ theme }) => theme.colors.border};
   padding: 5px;
   border-radius: 25px;
-  background-color: ${({theme}) => theme.colors.white}; ;
+  background-color: ${({ theme }) => theme.colors.white}; ;
   height: 50px;
-  width: 500px;
+  width: 50%;
   display: flex;
   justify-content: space-between;
-  box-shadow: ${({theme}) => theme.colors.shadow}; 
+  box-shadow: ${({ theme }) => theme.colors.shadow}; 
+
+  ${Mobile({ width: "95%" })}
+  ${IpadTablets({ width: "95%" })}
 `;

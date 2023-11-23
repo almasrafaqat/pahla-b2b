@@ -1,5 +1,5 @@
 import React from 'react'
-import {  HeaderWrapper, IconBody, IconsContainer, NavbarContainer, Navigation } from './navbar.style'
+import { HeaderWrapper, IconBody, IconsContainer, NavbarContainer, Navigation } from './navbar.style'
 import { Link, QuotationIcon, SampleIcon } from '../../globalStyle'
 
 
@@ -30,6 +30,7 @@ const Navbar = () => {
               <span style={{ marginLeft: "5px" }}>Request for Sample</span>
             </IconsContainer>
           </Link>
+
         </IconBody>
       </HeaderWrapper>
     </NavbarContainer>

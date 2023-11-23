@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Mobile } from "../../responsive";
+import { IpadTablets, Mobile } from "../../responsive";
 
 export const HeaderSection = styled.section``;
 
@@ -17,7 +17,8 @@ export const TopHeader = styled.header`
   align-items: center;
   justify-content: space-between;
 
-  ${Mobile({maxWidth: "100%", border: "1px solid"})}
+  ${Mobile({ maxWidth: "100%", flexDirection: "column", gap: "20px" })}
+  ${IpadTablets({ maxWidth: "100%", flexDirection: "column", gap: "20px" })}
 
 `;
 
@@ -29,12 +30,18 @@ export const Logo = styled.img`
 
 
 export const AccountLinks = styled.div`
-    svg{
-      margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    span{
+      margin-right: 50px;
     }
-    svg:last-child {
+    span:last-child {
     margin-right: 0;
-  } 
+    } 
+
+  ${Mobile({ width: "98%" })}
+  ${IpadTablets({ width: "98%" })}
 `;
 
 
