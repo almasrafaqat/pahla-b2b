@@ -6,6 +6,7 @@ import Navbar from "../navbar/navbar.component"
 import { AccountLinks, HeaderSection, Logo, MainContainer, TopHeader } from "./header.style"
 import HeaderMobile from "../header-mobile/header-mobile.component";
 import { useGlobalState } from "../../context/GlobalStates";
+import "../../responsive.css";
 
 const Header = () => {
   const { isMenuOpen, setIsMenuOpen } = useGlobalState();

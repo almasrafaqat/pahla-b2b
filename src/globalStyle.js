@@ -1,4 +1,4 @@
-import { AddTask, ArrowLeftOutlined, ArrowRightOutlined, ClearSharp, DevicesFold, DraftsOutlined, Facebook, Instagram, MenuOutlined, PersonOutline, PlaceOutlined, SearchOutlined, ShoppingCartOutlined, TtyOutlined, Twitter, YouTube } from "@mui/icons-material";
+import { AddTask, ArrowForward, ArrowLeftOutlined, ArrowRightOutlined, ClearSharp, DevicesFold, DraftsOutlined, Facebook, Instagram, MenuOutlined, PersonOutline, PlaceOutlined, SearchOutlined, ShoppingCartOutlined, TtyOutlined, Twitter, YouTube } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import { IpadTablets, Mobile } from "./responsive";
@@ -124,6 +124,9 @@ export const LocationIcon = styled(PlaceOutlined)`
 export const TelephoneIcon = styled(TtyOutlined)`
     color: ${({ theme }) => theme.colors.primary};
   `;
+export const ArrowForwardIcon = styled(ArrowForward)`
+  
+`;
 
 export const FacebookIcon = styled(Facebook)``;
 
