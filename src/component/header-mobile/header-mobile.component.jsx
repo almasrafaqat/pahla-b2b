@@ -1,7 +1,7 @@
 import { useGlobalState } from "../../context/GlobalStates";
 import { CloseIcon, DraftIcon, FacebookIcon, InstagramIcon, Link, LocationIcon, TelephoneIcon, TwitterIcon, YoutubeIcon } from "../../globalStyle";
 import Navbar from "../navbar/navbar.component";
-import { Container, CopyRightContainer, FlexContainer, Head, HeaderBody, HeaderFooter, HeaderMobileContainer, HeaderMobileSection, IconBg, InfoContainer, Logo, SocialContainer } from "./header-mobile.style";
+import {  CopyRightContainer, FlexContainer, Head, HeaderBody, HeaderFooter, HeaderMobileContainer, HeaderMobileSection, IconBg, InfoContainer, Logo, SocialContainer } from "./header-mobile.style";
 
 
 
