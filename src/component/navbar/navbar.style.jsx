@@ -1,20 +1,17 @@
 import styled from "styled-components";
 import { IpadTablets, Mobile } from "../../responsive";
+import { Container } from "../../globalStyle";
 
 
 export const NavbarContainer = styled.section`
    margin-top: 2%;
 `;
 
-export const HeaderWrapper = styled.div`
-   max-width: 80%;
-   margin: 0 auto;
+export const HeaderWrapper = styled(Container)`
    display: flex;
    align-items: center;
    justify-content: space-between;
    flex-wrap: wrap;
-
-   ${Mobile({ maxWidth: "100%"})}
 `;
 
 export const Navigation = styled.nav`

@@ -1,7 +1,7 @@
 import { AddTask, ArrowForward, ArrowLeftOutlined, ArrowRightOutlined, ClearSharp, DevicesFold, DraftsOutlined, Facebook, Instagram, MenuOutlined, PersonOutline, PlaceOutlined, SearchOutlined, ShoppingCartOutlined, TtyOutlined, Twitter, YouTube } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
-import { IpadTablets, Mobile } from "./responsive";
+import { IpadTablets, LaptopsSmallScreen, Mobile } from "./responsive";
 
 
 export const GlobalStyle = createGlobalStyle`
@@ -35,6 +35,16 @@ export const theme = {
     shadow: "0 6px 15px rgba(0, 0, 0, 0.15)",
   },
 };
+
+export const Container = styled.div`
+  max-width: 80%;
+  margin: 0 auto;
+  width: 100%;
+
+  ${Mobile({ maxWidth: "95%" })}
+  ${IpadTablets({ maxWidth: "95%"})}
+  ${LaptopsSmallScreen({ maxWidth: "95%"})}
+`;
 
 export const Link = styled(NavLink)`
   text-decoration: none;

@@ -1,12 +1,12 @@
 import styled from "styled-components";
-import { Mobile } from "../../responsive";
+import { ExtraLargeScreenTV, IpadTablets, LaptopsSmallScreen, Mobile } from "../../responsive";
+import { Container } from "../../globalStyle";
 
 
 export const TabsSection = styled.section``;
 
-export const TabsContainer = styled.div`
-  max-width: 80%;
-  margin:4% auto;
+export const TabsContainer = styled(Container)`
+    margin:70px auto;
 
   & #ny--tabs{
     border: 2px solid black;
@@ -17,7 +17,8 @@ export const TabsContainer = styled.div`
     height: 0px!important; 
   }
 
-  ${Mobile({maxWidth: "95%"})}
+  ${Mobile({ margin: "50px auto" })}
+ 
 `;
 
 export const TabsHeadingContainer = styled.div`
@@ -43,8 +44,11 @@ export const ProductColumn = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
   gap: 50px;
-
-  ${Mobile({gridTemplateColumns: "1fr", gap: "0"})}
+  
+  ${Mobile({ gridTemplateColumns: "1fr 1fr", gap: "20px" })}
+  ${IpadTablets({ gridTemplateColumns: "1fr 1fr", gap: "20px" })}
+  ${LaptopsSmallScreen({ gridTemplateColumns: "1fr 1fr", gap: "20px" })} 
+  ${ExtraLargeScreenTV({ gridTemplateColumns: "1fr 1fr 1fr", gap: "50px" })}
 `;
 
 export const ProductContainer = styled.div`
@@ -52,7 +56,8 @@ export const ProductContainer = styled.div`
   padding: 20px;
   border-radius: 15px;
 
-  ${Mobile({marginBottom: "20px"})}
+
+  ${Mobile({ marginBottom: "20px" })}
 `;
 
 export const ProductHeading = styled.h2`
@@ -75,39 +80,61 @@ export const ProductHeading = styled.h2`
 export const ProductCard = styled.div`
   display: flex;
   align-items: start;
-  gap: 10px;
+  gap: 10px; 
   margin-top: 20px;
   margin-bottom: 20px;
+
+
+  &.column{
+    flex-direction: column;
+  }
 
   &:last-child{
     margin-bottom: 0;
   }
 
-  ${Mobile({flexDirection: "column"})}
+  ${Mobile({ flexDirection: "column" })}
 
 `;
 
-export const ProductImage = styled.img`
-  max-width: 150px;
-  min-height: 150px;
-  width: 100%;
-  height: 100%;
-  border-radius: 10px;
+export const ImageContainer = styled.div`
+  flex: 40%;
   background-color: #fff;
-  object-fit: cover;
   text-align: center;
+  border-radius: 15px;
+  
+
+
+  &.column{
+    width: 100%;
+    height: 200px;
+
+  }
+  &.column img{
+    max-width: 100%;
+    height: 200px;
+    object-fit: contain;
+  
+  }
+`;
+export const ProductImage = styled.img`
+  
+  width: 80%;
+ 
   padding: 5px;
 
-  ${Mobile({maxWidth: "100%"})}
+  /* ${Mobile({ maxWidth: "100%" })} */
 `;
 
-export const ProductInfo = styled.div``;
+export const ProductInfo = styled.div`
+  flex: 70%;
+`;
 
 export const FlexContainer = styled.div`
   display: flex;
   align-items: center;
   margin: 15px 0;
-  color: ${(props) => props.color? ({theme}) => theme.colors.primary: 'black'};
+  color: ${(props) => props.color ? ({ theme }) => theme.colors.primary : 'black'};
 `;
 
 export const SpanTag = styled.span`

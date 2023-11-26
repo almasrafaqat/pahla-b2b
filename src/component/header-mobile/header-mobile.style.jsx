@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Container } from "../../globalStyle";
 
 
 export const HeaderMobileSection = styled.section`
@@ -12,7 +13,7 @@ export const HeaderMobileSection = styled.section`
   
 `;
 
-export const Container = styled.div`
+export const HeaderMobileContainer = styled(Container)`
     background-color: ${({ theme }) => theme.colors.white};
     height: 100%;
     width: 100%;

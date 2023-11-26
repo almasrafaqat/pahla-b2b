@@ -1,20 +1,14 @@
 import styled from "styled-components";
 import { IpadTablets, Mobile } from "../../responsive";
+import { Container } from "../../globalStyle";
 
 export const SliderSection = styled.section``;
 
-export const SliderContainer = styled.div`
-   max-width: 80%;
+export const SliderContainer = styled(Container)`
    position: relative;
-   margin: 0 auto;
    margin-top: 2%;
-   width: 100%;
 
-   ${Mobile({ maxWidth: "95%" })}
-   ${IpadTablets({ maxWidth: "95%"})}
-
-  
-   & .slider-image{
+  & .slider-image{
     width: 100%;
     max-height: 400px;
     border-radius: 30px;

@@ -1,25 +1,28 @@
 import styled from "styled-components";
 import { IpadTablets, Mobile } from "../../responsive";
+import { Container } from "../../globalStyle";
 
-export const HeaderSection = styled.section``;
+export const HeaderSection = styled.header``;
 
 export const MainContainer = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.colors.border};
 `;
 
-export const TopHeader = styled.header`
-  max-width: 80%;
-  width: 100%;
-  margin:0 auto;
+export const TopHeader = styled(Container)`
+ 
   background-color: #fff;
   padding: 0.7rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  ${Mobile({ maxWidth: "100%", flexDirection: "column", gap: "20px" })}
-  ${IpadTablets({ maxWidth: "100%", flexDirection: "column", gap: "20px" })}
+  ${Mobile({  flexDirection: "column", gap: "20px" })}
+  ${IpadTablets({  flexDirection: "column", gap: "20px" })}
 
+`;
+
+export const HeaderContainer = styled.div`
+  
 `;
 
 export const Logo = styled.img`
