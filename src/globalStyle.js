@@ -1,4 +1,4 @@
-import { AddTask, ArrowForward, ArrowLeftOutlined, ArrowRightOutlined, ClearSharp, DevicesFold, DraftsOutlined, Facebook, Instagram, MenuOutlined, PersonOutline, PlaceOutlined, SearchOutlined, ShoppingCartOutlined, TtyOutlined, Twitter, YouTube } from "@mui/icons-material";
+import { AddShoppingCart, AddTask, ArrowForward, ArrowLeftOutlined, ArrowRightOutlined, ClearSharp, DesignServices, DevicesFold, DraftsOutlined, Facebook, HighlightAlt, Instagram, MenuOutlined, PersonOutline, PlaceOutlined, ScubaDiving, SearchOutlined, ShoppingCartOutlined, TtyOutlined, Twitter, YouTube } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import { IpadTablets, LaptopsSmallScreen, Mobile } from "./responsive";
@@ -109,14 +109,17 @@ export const QuotationIcon = styled(AddTask)`
   font-size: 2rem!important;
   cursor: pointer;
 `;
+
 export const SampleIcon = styled(DevicesFold)`
   font-size: 2rem!important;
   cursor: pointer;
 `;
+
 export const MenuIcon = styled(MenuOutlined)`
   font-size: 2rem!important;
   cursor: pointer;
 `;
+
 export const CloseIcon = styled(ClearSharp)`
   cursor: pointer;
 
@@ -130,14 +133,18 @@ export const LocationIcon = styled(PlaceOutlined)`
     color: ${({ theme }) => theme.colors.primary};
   `;
 
-
 export const TelephoneIcon = styled(TtyOutlined)`
     color: ${({ theme }) => theme.colors.primary};
   `;
 export const ArrowForwardIcon = styled(ArrowForward)`
-  
 `;
-
+export const MockupIcon = styled(ScubaDiving)`
+  transform: rotate(90deg);
+  ${Mobile({ fontSize: "1rem!important" })}
+`;
+export const CardCartIcon = styled(AddShoppingCart)`
+  ${Mobile({ fontSize: "1rem!important" })}
+`;
 export const FacebookIcon = styled(Facebook)``;
 
 export const YoutubeIcon = styled(YouTube)``;
@@ -145,7 +152,6 @@ export const YoutubeIcon = styled(YouTube)``;
 export const TwitterIcon = styled(Twitter)``;
 
 export const InstagramIcon = styled(Instagram)``;
-
 
 export const SearchContainer = styled.div`
   border: 1px solid ${({ theme }) => theme.colors.border};
