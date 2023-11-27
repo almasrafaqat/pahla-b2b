@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { ExtraLargeScreenTV, IpadTablets, LaptopsSmallScreen, Mobile } from "../../responsive";
-import {  Container, QuotationIcon, SampleIcon } from "../../globalStyle";
+import { Container, QuotationIcon, SampleIcon } from "../../globalStyle";
 
 export const TabsSection = styled.section``;
 export const TabsContainer = styled(Container)`
@@ -104,6 +104,7 @@ export const ImageContainer = styled.div`
   background-color: #fff;
   text-align: center;
   border-radius: 15px;
+  height: 150px;
 
   &.column{
     width: 100%;
@@ -121,6 +122,9 @@ export const ImageContainer = styled.div`
 export const ProductImage = styled.img`
   width: 80%;
   padding: 5px;
+  height: 95%;
+  object-fit: contain;
+
 
   ${Mobile({ width: "100%" })}
 `;

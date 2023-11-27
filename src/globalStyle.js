@@ -11,6 +11,15 @@ export const GlobalStyle = createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     font-family: 'Urbanist', sans-serif;
+    
+  }
+
+  
+  body{
+
+   
+    ${Mobile({  overflowX: 'hidden' })}
+    
   }
 `;
 

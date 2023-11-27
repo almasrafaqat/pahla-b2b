@@ -172,3 +172,21 @@ const { allProducts } = otherProps;
                 })
               }
             </ProductColumn>
+
+
+// --------------
+ const userProvidedCategories = ['smartwatch', 'smartphone']; // Replace with actual user input
+
+  const getProductsByCategory = (category) =>
+    allProducts.filter((product) => product.category === category).slice(0, 2);
+
+  const userCategoriesExist = userProvidedCategories.every(category =>
+    allProducts.some(product => product.category === category)
+  );
+
+
+  const uniqueOtherCategories = Array.from(new Set(
+    allProducts
+      .filter(product => userProvidedCategories.includes(product.category))
+      .map(product => product.category)
+  ));

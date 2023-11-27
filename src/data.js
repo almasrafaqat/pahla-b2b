@@ -61,7 +61,8 @@ export const Products = [
     bg:"#f74b81",
     brand: "himalaya",
     featured: true,
-    views: 20,
+    views: 1,
+    sales: 1,
     images: [
        "/images/products/digitalcamera.png",
     ]
@@ -159,7 +160,7 @@ export const Products = [
     bg: "#67bcee",
     brand: "huawei",
     featured: true,
-    views: 25,
+    views: 15,
   },
   {
     id: 7,
@@ -176,7 +177,7 @@ export const Products = [
     bg: "#3bb77e",
     brand: "SoundPEATS",
     featured: true,
-    views: 25,
+    views: 7,
     images: [
       "/images/products/graywathch1.png",
       "/images/products/graywathch2.png", 
@@ -197,7 +198,7 @@ export const Products = [
     bg: "#3bb77e",
     brand: "lenovo",
     featured: false,
-    views: 26,
+    views: 4,
     images: [
       "/images/products/headphone1.png",
       "/images/products/headphone2.png",
@@ -222,7 +223,7 @@ export const Products = [
     bg: "#3bb77e",
     brand: "samsung",
     featured: false,
-    views: 27,
+    views: 3,
     images: [
       "/images/products/androidphone1.png",
       "/images/products/androidphone2.png",
@@ -245,7 +246,7 @@ export const Products = [
     bg:"#f74b81",
     brand: "apple",
     featured: false,
-    views: 28,
+    views: 50,
     images: [
       "/images/products/iphone1.png",
       "/images/products/iphone2.png",
@@ -254,7 +255,7 @@ export const Products = [
    ]
   },
   {
-    id: 10,
+    id: 11,
     title: "Clothing Set of Washables",
     imageUrl: "./img/slider/img3.webp",
     category: "beauty",
@@ -277,7 +278,7 @@ export const Products = [
    ]
   },
   {
-    id: 10,
+    id: 12,
     title: "Accessories Set of Products",
     imageUrl: "./img/slider/img7.webp",
     category: "accessories",
@@ -291,7 +292,7 @@ export const Products = [
     bg:"#f74b81",
     brand: "apple",
     featured: false,
-    views: 28,
+    views: 22,
     images: [
       "/images/products/iphone1.png",
       "/images/products/iphone2.png",
@@ -300,7 +301,7 @@ export const Products = [
    ]
   },
   {
-    id: 10,
+    id: 13,
     title: "Beauty Products top Brand",
     imageUrl: "./img/slider/img4.webp",
     category: "beauty",
@@ -315,6 +316,32 @@ export const Products = [
     brand: "apple",
     featured: false,
     views: 28,
+    sales: 31,
+    images: [
+      "/images/products/iphone1.png",
+      "/images/products/iphone2.png",
+      "/images/products/iphone3.png",
+      "/images/products/iphone4.png",
+   ]
+  },
+
+  {
+    id: 14,
+    title: "Leather Shoes for foggy",
+    imageUrl: "./img/slider/img3.webp",
+    category: "shoes",
+    rating: 4,
+    price: 6000,
+    discount: 5500,
+    stock: 1,
+    deal: true,
+    dealends: 4,
+    tag: "hot",
+    bg:"#f74b81",
+    brand: "apple",
+    featured: false,
+    views: 28,
+    sales: 20,
     images: [
       "/images/products/iphone1.png",
       "/images/products/iphone2.png",

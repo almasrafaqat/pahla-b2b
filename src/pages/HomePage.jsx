@@ -8,21 +8,24 @@ import { useGlobalState } from '../context/GlobalStates';
 
 
 const HomePage = () => {
-  const {AllProducts} = useGlobalState();
-  const FiveProducts = AllProducts.slice(5,10);
-  
+  const { newSortedProducts, sortedProductsByRating, sortedProductsBySales} = useGlobalState();
+ 
+   
   return (
     <>
       <Header />
       <PrimarySlider />
       <ProductsTabs 
-       allProducts={FiveProducts}
+       newArrivals={newSortedProducts}
+       topRanking={sortedProductsByRating}
+       hotSelling={sortedProductsBySales}
+       
       />
       <ProductsTabs
       sectionHeading="Top Trendy"
       prductNumber={2}
-      allProducts={AllProducts}
       productDir='column'
+      topRanking={sortedProductsByRating}
       />
     </>
   )
