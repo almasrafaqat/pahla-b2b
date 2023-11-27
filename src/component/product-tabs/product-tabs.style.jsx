@@ -150,7 +150,7 @@ export const FlexContainer = styled.div`
   display: flex;
   align-items: center;
   margin: 10px 0;
-  color: ${(props) => props.color == 'sample' ? ({ theme }) => theme.colors.primary : 'black'};
+  color: ${(props) => props.color === 'sample' ? ({ theme }) => theme.colors.primary : 'black'};
   ${(props) => props.color === 'mockup' && MockupColor};
   ${(props) => props.color === 'cart' && CartColor};
   cursor: pointer;

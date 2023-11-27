@@ -1,4 +1,4 @@
-import { AddShoppingCart, AddTask, ArrowForward, ArrowLeftOutlined, ArrowRightOutlined, ClearSharp, DesignServices, DevicesFold, DraftsOutlined, Facebook, HighlightAlt, Instagram, MenuOutlined, PersonOutline, PlaceOutlined, ScubaDiving, SearchOutlined, ShoppingCartOutlined, TtyOutlined, Twitter, YouTube } from "@mui/icons-material";
+import { AddShoppingCart, AddTask, ArrowForward, ArrowLeftOutlined, ArrowRightOutlined, ClearSharp, DevicesFold, DraftsOutlined, Facebook,  Instagram, MenuOutlined, PersonOutline, PlaceOutlined, ScubaDiving, SearchOutlined, ShoppingCartOutlined, TtyOutlined, Twitter, YouTube } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import styled, { createGlobalStyle } from "styled-components";
 import { IpadTablets, LaptopsSmallScreen, Mobile } from "./responsive";
