@@ -26,11 +26,11 @@ function ProductTabPanel(props) {
   );
 }
 
-ProductTabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-}
+// ProductTabPanel.propTypes = {
+//   children: PropTypes.node,
+//   index: PropTypes.number.isRequired,
+//   value: PropTypes.number.isRequired,
+// }
 
 function a11yProps(index) {
   return {
@@ -48,49 +48,16 @@ const DefaultProps = {
 
 
 
-const ProductsTabs = ({ productDir = DefaultProps.PRODUCT_DIRECTION, sectionHeading = DefaultProps.SECTION_H, prductNumber = DefaultProps.PRODUCT_NO, productGrid = DefaultProps.PRODUCT_GRID, ...otherProps }) => {
+const ProductsTabs = ({ productDir = DefaultProps.PRODUCT_DIRECTION, sectionHeading = DefaultProps.SECTION_H, prductNumber = DefaultProps.PRODUCT_NO, productGrid = DefaultProps.PRODUCT_GRID, categories, productsByCategories, ...otherProps }) => {
 
-  const { newArrivalsLabel, newArrivals, topRankingLabel, topRanking, hotSellingLabel, hotSelling, categoryWiseProducts } = otherProps;
 
-  /**Label Wise Products */
-  const labelsArray = [topRankingLabel, newArrivalsLabel, hotSellingLabel];
-  const [selectedLabel, setSelectedLabel] = useState(0);
-
-  /**Category wise Products */
-  const categoriesArray = [...new Set(categoryWiseProducts?.map((product) => product.category))];
-  const [selectCategory, setSelectedCategory] = useState(categoriesArray[0]);
-
-  console.log("selectCategory", selectCategory);
-  const handleChange = (event, value) => {
-    setSelectedLabel(value);
-  };
-
-  const handleChangeCategory = (event, value) => {
-    setSelectedCategory(value);
-  };
-
-  /** Get Products by Labels selctions */
-  const getProductsForLabels = () => {
-    switch (selectedLabel) {
-      case 0:
-        return hotSelling;
-      case 1:
-        return newArrivals;
-      case 2:
-        return topRanking;
-      default:
-        return [];
-    }
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const handleCategoryChange = (event, newValue) => {
+    setSelectedCategory(newValue);
   }
 
-  const filteredLabelProducts = getProductsForLabels();
-  const filteredLabelProductsSlice = filteredLabelProducts?.slice(0, productGrid);
-  const productLength = Math.ceil(filteredLabelProductsSlice?.length / prductNumber);
-
-
-  const filteredCategoryProducts = (categoryWiseProducts?.filter(product => product.category === selectCategory).slice(0, 6));
-
-  const CategoryProductLength = Math.ceil(filteredCategoryProducts?.length / prductNumber);
+  const filteredProducts = productsByCategories[selectedCategory] || [];
+  const gridContainers = Math.ceil(filteredProducts.slice(0, productGrid).length / prductNumber);
 
 
   return (
@@ -106,127 +73,65 @@ const ProductsTabs = ({ productDir = DefaultProps.PRODUCT_DIRECTION, sectionHead
           </TabsViewMore>
         </TabsHeadingContainer>
         <Box sx={{ width: '100%' }}>
-          {labelsArray && <Tabs value={selectedLabel} onChange={handleChange} aria-label="ny--tabs">
+          <Tabs value={selectedCategory} onChange={handleCategoryChange} aria-label="ny--tabs">
             {
-              labelsArray?.map((label, index) => <Tab key={index} value={index} label={label} {...a11yProps(index)} />)
+              categories && categories.map((category, index) =>
+                <Tab key={index} value={category} label={category} {...a11yProps(index)} />)
             }
           </Tabs>
-          }
-          {categoriesArray && <Tabs value={selectCategory} onChange={handleChangeCategory} aria-label="ny--tabs">
-            {
-              categoriesArray?.map((category, index) => <Tab key={index} value={category} label={category} {...a11yProps(index)} />)
-            }
-          </Tabs>
-          }
         </Box>
-        {labelsArray &&
-          <ProductTabPanel value={selectedLabel} index={selectedLabel}>
-            <ProductColumn>
-              {
-                filteredLabelProducts?.slice(0, productLength).map((_, ind) => {
-                  const startIndex = ind * prductNumber;
-                  const endIndex = startIndex + prductNumber;
-                  return (
-                    <ProductContainer key={ind}>
-                      {
-                        filteredLabelProducts.slice(startIndex, endIndex).map((product) =>
-                          <div key={product.id}>
-                            <ProductHeading>
-                              {product.category.slice(0, 1).toUpperCase() + product.category.slice(1, product.category.length)}
-                            </ProductHeading>
-                            <ProductCard key={ind} className={`card--${productDir}`}>
-                              <ImageContainer className={`${productDir}`}>
-                                <Link to={`/productdetails/${product.id}`}>
-                                  <ProductImage src={product.imageUrl} alt={`Product--${product.id}`} />
-                                </Link>
-                              </ImageContainer>
-                              <ProductInfo>
-                                <Link to="/">
-                                  <h4>{product.title.slice(0, 25)}...</h4>
-                                </Link>
-                                <FlexContainer>
-                                  <span>Min.Order:</span><SpanTag>5 Pieces</SpanTag>
+        <ProductTabPanel value={selectedCategory} index={selectedCategory}>
+          <ProductColumn>
+            {
+              filteredProducts?.slice(0, gridContainers).map((_, ind) => {
+                const startIndex = ind * prductNumber;
+                const endIndex = startIndex + prductNumber;
+                return (
+                  <ProductContainer key={ind}>
+                    {
+                      filteredProducts.slice(startIndex, endIndex).map((product) =>
+                        <div key={product.id}>
+                          <ProductHeading>
+                            {product.category.slice(0, 1).toUpperCase() + product.category.slice(1, product.category.length)}
+                          </ProductHeading>
+                          <ProductCard key={ind} className={`card--${productDir}`}>
+                            <ImageContainer className={`card--${productDir}`}>
+                              <Link to={`/productdetails/${product.id}`}>
+                                <ProductImage src={product.imageUrl} alt={`Product--${product.id}`} />
+                              </Link>
+                            </ImageContainer>
+                            <ProductInfo>
+                              <Link to="/">
+                                <h4>{product.title.slice(0, 25)}...</h4>
+                              </Link>
+                              <FlexContainer>
+                                <span>Min.Order:</span><SpanTag>5 Pieces</SpanTag>
+                              </FlexContainer>
+                              <FlexContainer color="sample" size="small">
+                                <QuotationIconCustmized /> <SpanTag>Request Quotation</SpanTag>
+                              </FlexContainer>
+                              <FlexContainer color="sample">
+                                <SampleIconCustmized /> <SpanTag>Request Sample</SpanTag>
+                              </FlexContainer>
+                              <MockupCartContainer>
+                                <FlexContainer color="mockup">
+                                  <MockupIcon /> <SpanTag>Mockup</SpanTag>
                                 </FlexContainer>
-                                <FlexContainer color="sample" size="small">
-                                  <QuotationIconCustmized /> <SpanTag>Request Quotation</SpanTag>
+                                <FlexContainer color="cart">
+                                  <CardCartIcon /> <SpanTag>Start Order</SpanTag>
                                 </FlexContainer>
-                                <FlexContainer color="sample">
-                                  <SampleIconCustmized /> <SpanTag>Request Sample</SpanTag>
-                                </FlexContainer>
-                                <MockupCartContainer>
-                                  <FlexContainer color="mockup">
-                                    <MockupIcon /> <SpanTag>Mockup</SpanTag>
-                                  </FlexContainer>
-                                  <FlexContainer color="cart">
-                                    <CardCartIcon /> <SpanTag>Start Order</SpanTag>
-                                  </FlexContainer>
-                                </MockupCartContainer>
-                              </ProductInfo>
-                            </ProductCard>
-                          </div>
-                        )
-                      }
-                    </ProductContainer>
-                  )
-                })
-              }
-            </ProductColumn>
-          </ProductTabPanel>
-        }
-        {categoriesArray &&
-          <ProductTabPanel value={selectCategory} index={selectCategory}>
-            <ProductColumn>
-              {
-                filteredCategoryProducts?.slice(0, CategoryProductLength).map((_, ind) => {
-                  const startIndex = ind * prductNumber;
-                  const endIndex = startIndex + prductNumber;
-                  return (
-                    <ProductContainer key={ind}>
-                      {
-                        filteredCategoryProducts.slice(startIndex, endIndex).map((product) =>
-                          <div key={product.id}>
-                            <ProductHeading>
-                              {product.category.slice(0, 1).toUpperCase() + product.category.slice(1, product.category.length)}
-                            </ProductHeading>
-                            <ProductCard key={ind} className={`card--${productDir}`}>
-                              <ImageContainer className={`card--${productDir}`}>
-                                <Link to={`/productdetails/${product.id}`}>
-                                  <ProductImage src={product.imageUrl} alt={`Product--${product.id}`} />
-                                </Link>
-                              </ImageContainer>
-                              <ProductInfo>
-                                <Link to="/">
-                                  <h4>{product.title.slice(0, 25)}...</h4>
-                                </Link>
-                                <FlexContainer>
-                                  <span>Min.Order:</span><SpanTag>5 Pieces</SpanTag>
-                                </FlexContainer>
-                                <FlexContainer color="sample" size="small">
-                                  <QuotationIconCustmized /> <SpanTag>Request Quotation</SpanTag>
-                                </FlexContainer>
-                                <FlexContainer color="sample">
-                                  <SampleIconCustmized /> <SpanTag>Request Sample</SpanTag>
-                                </FlexContainer>
-                                <MockupCartContainer>
-                                  <FlexContainer color="mockup">
-                                    <MockupIcon /> <SpanTag>Mockup</SpanTag>
-                                  </FlexContainer>
-                                  <FlexContainer color="cart">
-                                    <CardCartIcon /> <SpanTag>Start Order</SpanTag>
-                                  </FlexContainer>
-                                </MockupCartContainer>
-                              </ProductInfo>
-                            </ProductCard>
-                          </div>
-                        )
-                      }
-                    </ProductContainer>
-                  )
-                })
-              }
-            </ProductColumn>
-          </ProductTabPanel>
-        }
+                              </MockupCartContainer>
+                            </ProductInfo>
+                          </ProductCard>
+                        </div>
+                      )
+                    }
+                  </ProductContainer>
+                )
+              })
+            }
+          </ProductColumn>
+        </ProductTabPanel>
       </TabsContainer>
     </TabsSection >
   )

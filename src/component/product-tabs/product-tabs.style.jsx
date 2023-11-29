@@ -60,10 +60,11 @@ export const ProductContainer = styled.div`
   ${IpadTablets({ marginBottom: "20px", height: "fit-content" })}
 `;
 
-export const ProductHeading = styled.h2`
+export const ProductHeading = styled.h3`
   position: relative;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 1.2rem;
+  border-bottom: 1px solid ${({theme}) => theme.colors.border};
+  padding-bottom: 0.6rem;
+  
 
   &::after {
     content: "";

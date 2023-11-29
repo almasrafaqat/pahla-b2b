@@ -10,6 +10,16 @@ export const GlobalStateProvider = ({children}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const AllProducts = [...Products];
 
+  /* Categories from all products*/
+  const categories = [...new Set(AllProducts.map(product => product.category))];
+
+   // Organize products by categories
+   const productsByCategories = AllProducts.reduce((acc, product) => {
+    acc[product.category] = acc[product.category] || [];
+    acc[product.category].push(product);
+    return acc;
+  }, {});
+
   // Sort the products based on their IDs
     const newSortedProducts = [...Products].sort((a, b) => b.id - a.id);
 
@@ -23,6 +33,8 @@ export const GlobalStateProvider = ({children}) => {
     isMenuOpen,
     setIsMenuOpen,
     AllProducts,
+    categories,
+    productsByCategories,
     newSortedProducts,
     sortedProductsByRating,
     sortedProductsBySales,
