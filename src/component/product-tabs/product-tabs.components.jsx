@@ -26,11 +26,11 @@ function ProductTabPanel(props) {
   );
 }
 
-// ProductTabPanel.propTypes = {
-//   children: PropTypes.node,
-//   index: PropTypes.number.isRequired,
-//   value: PropTypes.number.isRequired,
-// }
+ProductTabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+}
 
 function a11yProps(index) {
   return {
