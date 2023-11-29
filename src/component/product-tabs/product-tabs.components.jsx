@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
-import { FlexContainer, ImageContainer, MockupCartContainer, ProductCard, ProductColumn, ProductContainer, ProductHeading, ProductImage, ProductInfo, QuotationIconCustmized, SampleIconCustmized, SpanTag, TabsContainer, TabsHeading, TabsHeadingContainer, TabsSection, TabsViewMore } from './product-tabs.style';
-import { ArrowForwardIcon, CardCartIcon, Link, MockupIcon } from '../../globalStyle';
+import { ProductColumn, ProductContainer, ProductHeading, TabsContainer, TabsHeading, TabsHeadingContainer, TabsSection, TabsViewMore } from './product-tabs.style';
+import { ArrowForwardIcon, Link } from '../../globalStyle';
+import ProductCard from '../product-card/product-card.component';
 
 function ProductTabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -47,9 +48,7 @@ const DefaultProps = {
 }
 
 
-
 const ProductsTabs = ({ productDir = DefaultProps.PRODUCT_DIRECTION, sectionHeading = DefaultProps.SECTION_H, prductNumber = DefaultProps.PRODUCT_NO, productGrid = DefaultProps.PRODUCT_GRID, categories, productsByCategories, ...otherProps }) => {
-
 
   const [selectedCategory, setSelectedCategory] = useState(categories[0]);
   const handleCategoryChange = (event, newValue) => {
@@ -58,7 +57,6 @@ const ProductsTabs = ({ productDir = DefaultProps.PRODUCT_DIRECTION, sectionHead
 
   const filteredProducts = productsByCategories[selectedCategory] || [];
   const gridContainers = Math.ceil(filteredProducts.slice(0, productGrid).length / prductNumber);
-
 
   return (
     <TabsSection>
@@ -94,35 +92,7 @@ const ProductsTabs = ({ productDir = DefaultProps.PRODUCT_DIRECTION, sectionHead
                           <ProductHeading>
                             {product.category.slice(0, 1).toUpperCase() + product.category.slice(1, product.category.length)}
                           </ProductHeading>
-                          <ProductCard key={ind} className={`card--${productDir}`}>
-                            <ImageContainer className={`card--${productDir}`}>
-                              <Link to={`/productdetails/${product.id}`}>
-                                <ProductImage src={product.imageUrl} alt={`Product--${product.id}`} />
-                              </Link>
-                            </ImageContainer>
-                            <ProductInfo>
-                              <Link to="/">
-                                <h4>{product.title.slice(0, 25)}...</h4>
-                              </Link>
-                              <FlexContainer>
-                                <span>Min.Order:</span><SpanTag>5 Pieces</SpanTag>
-                              </FlexContainer>
-                              <FlexContainer color="sample" size="small">
-                                <QuotationIconCustmized /> <SpanTag>Request Quotation</SpanTag>
-                              </FlexContainer>
-                              <FlexContainer color="sample">
-                                <SampleIconCustmized /> <SpanTag>Request Sample</SpanTag>
-                              </FlexContainer>
-                              <MockupCartContainer>
-                                <FlexContainer color="mockup">
-                                  <MockupIcon /> <SpanTag>Mockup</SpanTag>
-                                </FlexContainer>
-                                <FlexContainer color="cart">
-                                  <CardCartIcon /> <SpanTag>Start Order</SpanTag>
-                                </FlexContainer>
-                              </MockupCartContainer>
-                            </ProductInfo>
-                          </ProductCard>
+                          <ProductCard key={product.id} {...product} productDir={productDir} />
                         </div>
                       )
                     }
