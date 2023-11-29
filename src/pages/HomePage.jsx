@@ -8,24 +8,29 @@ import { useGlobalState } from '../context/GlobalStates';
 
 
 const HomePage = () => {
-  const { newSortedProducts, sortedProductsByRating, sortedProductsBySales} = useGlobalState();
- 
-   
+  const { AllProducts, newSortedProducts, sortedProductsByRating, sortedProductsBySales } = useGlobalState();
+
+
   return (
     <>
       <Header />
       <PrimarySlider />
-      <ProductsTabs 
-       newArrivals={newSortedProducts}
-       topRanking={sortedProductsByRating}
-       hotSelling={sortedProductsBySales}
-       
+      <ProductsTabs
+        prductNumber={3}
+        productGrid={9}
+        newArrivalsLabel="New Arrivals"
+        newArrivals={newSortedProducts}
+        topRankingLabel="Top Ranking"
+        topRanking={sortedProductsByRating}
+        hotSellingLabel="Hot Selling"
+        hotSelling={sortedProductsBySales}
+
       />
       <ProductsTabs
-      sectionHeading="Top Trendy"
-      prductNumber={2}
-      productDir='column'
-      topRanking={sortedProductsByRating}
+        sectionHeading="Top Trendy"
+        prductNumber={1}
+        productDir='column'
+        categoryWiseProducts={AllProducts}
       />
     </>
   )

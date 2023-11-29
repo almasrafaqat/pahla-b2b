@@ -89,7 +89,7 @@ export const ProductCard = styled.div`
     border-bottom: 0;
   }
 
-  &.column{
+  &.card--column{
     flex-direction: column;
   }
   &:last-child{
@@ -106,11 +106,11 @@ export const ImageContainer = styled.div`
   border-radius: 15px;
   height: 150px;
 
-  &.column{
+  &.card--column{
     width: 100%;
    
   }
-  &.column img{
+  &.card--column img{
     max-width: 100%;
     height: 200px;
     object-fit: contain;
