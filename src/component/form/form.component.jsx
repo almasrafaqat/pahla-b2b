@@ -114,7 +114,7 @@ const FormComponent = ({ products }) => {
   };
 
   return (
-    <div style={{ background: "white", width: '80%', margin: "20px auto", padding: "20px" , borderRadius: "10px" }}>
+    <div>
       <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <CustomTextField

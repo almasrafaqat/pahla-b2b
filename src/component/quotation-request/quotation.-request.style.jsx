@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Container } from "../../globalStyle";
 
 export const QuotationSection = styled.section`
-  background-color: ${({theme}) => theme.colors.border};
+  /* background-color: ${({theme}) => theme.colors.white}; */
 `;
 
 export const QuotationContainer = styled(Container)`
@@ -17,7 +17,7 @@ export const QuotationHeader = styled.div`
 export const QuotationHeading = styled.h1``;
 
 export const QuotationBody = styled.div`
-  padding: 50px;
+  padding: 10px;
 `;
 
 
