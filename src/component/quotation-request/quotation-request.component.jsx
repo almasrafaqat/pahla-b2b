@@ -1,11 +1,13 @@
 import React from 'react'
 import { QuotationBody, QuotationContainer, QuotationHeader, QuotationHeading, QuotationSection } from './quotation.-request.style'
+import FormComponent from '../form/form.component';
+import { useGlobalState } from '../../context/GlobalStates';
 
 
 
 
 const QuotationRequest = () => {
-
+  const { AllProducts } = useGlobalState();
 
   return (
     <QuotationSection>
@@ -20,8 +22,7 @@ const QuotationRequest = () => {
           </p>
         </QuotationHeader>
         <QuotationBody>
-
-
+          <FormComponent products={AllProducts} />
         </QuotationBody>
       </QuotationContainer>
     </QuotationSection>

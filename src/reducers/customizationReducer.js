@@ -10,6 +10,7 @@ const customizationSlice = createSlice({
     selectedColor: '',
     selectedQuantity: 1,
     selectedVariation: [],
+    selectedCountry: '',
     // Add other state properties as needed
   },
   reducers: {
@@ -29,6 +30,9 @@ const customizationSlice = createSlice({
     setSelectedVariation: (state, action) => {
       state.selectedVariation = action.payload;
     },
+    setSelectedCountry: (state, action) => {
+      state.selectedCountry = action.payload;
+    },
 
   },
 });
@@ -39,6 +43,7 @@ export const {
   setSelectedColor,
   setSelectedQuantity,
   setSelectedVariation,
+  setSelectedCountry,
 
   // Export other actions as needed
 } = customizationSlice.actions;

@@ -3,13 +3,20 @@ import {
   TextField,
   Button,
   Grid,
-   Chip,
+  Chip,
   Avatar,
-  Autocomplete
+  Autocomplete,
+  MenuItem,
+  InputLabel,
+  FormControl,
+  Select
+
+
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { setSelectedColor, setSelectedProducts, setSelectedQuantity, setSelectedSize, setSelectedVariation } from '../../reducers/customizationReducer';
-//resuable text field
+import CountrySelect from '../country-list/country-list.component';
+
 
 const CustomTextField = ({ label, value, onChange, type = 'text', ...rest }) => (
   <TextField
@@ -25,6 +32,29 @@ const CustomTextField = ({ label, value, onChange, type = 'text', ...rest }) => 
   />
 )
 
+const CustomDropdown = ({ label, value, onChange, options, multiple, renderValue }) => {
+  return (
+    <FormControl fullWidth style={{ marginTop: "20px" }}>
+      <InputLabel id={`${label.toLowerCase()}-label`}>{label}</InputLabel>
+      <Select
+        labelId={`${label.toLowerCase()}-label`}
+        value={value}
+        label={label}
+        onChange={onChange}
+        multiple={multiple}
+        renderValue={renderValue}
+
+      >
+        {options.map((option) => (
+          <MenuItem key={option.value} value={option.value}>
+            {option.label}
+          </MenuItem>
+        ))}
+      </Select>
+    </FormControl>
+  );
+}
+
 const CustomChip = ({ label, onDelete }) => (
   <Chip
     avatar={<Avatar>{label[0]}</Avatar>}
@@ -36,7 +66,11 @@ const CustomChip = ({ label, onDelete }) => (
   />
 )
 
-const FormComponent = ({ products, onSubmitCustomization }) => {
+
+
+
+/**=========================*/
+const FormComponent = ({ products }) => {
 
   const dispatch = useDispatch();
 
@@ -48,7 +82,8 @@ const FormComponent = ({ products, onSubmitCustomization }) => {
 
 
 
-  console.log("selectedVariation", selectedVariation);
+
+  console.log("selectedColor", "selectedColor");
 
 
   //Adding a New Variation:
@@ -79,14 +114,58 @@ const FormComponent = ({ products, onSubmitCustomization }) => {
   };
 
   return (
-    <div style={{ background: "white", width: '80%', margin: "20px auto" }}>
-
-
+    <div style={{ background: "white", width: '80%', margin: "20px auto", padding: "20px" , borderRadius: "10px" }}>
       <Grid container spacing={2}>
+        <Grid item xs={12} md={6}>
+          <CustomTextField
+            label="Name"
+            type="text"
+          />
+          <CustomTextField
+            label="Email"
+            type="email"
+          />
+
+          <CustomDropdown
+            label="color"
+            options={[{ label: 'Black', value: 'black' }, { label: 'White', value: 'white' }]}
+            value={selectedColor}
+            onChange={(e) => dispatch(setSelectedColor(e.target.value))}
+          />
+          <CustomDropdown
+            label="size"
+            options={[{ label: 'Small', value: 'small' }, { label: 'Medium', value: 'medium' }, { label: 'Large', value: 'large' }]}
+            value={selectedSize}
+            onChange={(e) => dispatch(setSelectedSize(e.target.value))}
+          />
+          <CustomTextField
+            label="quality"
+            value={selectedQuantity}
+            onChange={(e) => dispatch(setSelectedQuantity(e.target.value))}
+            type="number"
+            inputProps={{ min: 0 }}
+          />
+
+
+          <Button variant="contained" color='primary' onClick={handleAddVariation}>
+            Add Color & Size
+          </Button>
+
+          {
+            selectedVariation.map((variation, index) => (
+              <CustomChip
+                key={index}
+                label={`${variation.color}, ${variation.size},${variation.quantity}`}
+                onDelete={() => handleRemoveVariation(index)}
+              />
+            ))
+          }
+        </Grid>
         <Grid item xs={12} md={6}>
           <Autocomplete
             multiple
             id="product-select"
+            style={{ marginTop: '15px', marginBottom: '15px' }}
             options={products}
             getOptionLabel={(option) => option.title}
             value={selectedProducts}
@@ -115,42 +194,25 @@ const FormComponent = ({ products, onSubmitCustomization }) => {
             )}
             renderInput={(params) => (
               <TextField {...params} variant="outlined" label="Select Products" placeholder="Search products" />
-
             )}
+          />
+          <div style={{ marginTop: "25px", marginBottom: "8px" }}>
+            <CountrySelect />
+          </div>
+          <CustomDropdown
+            label="Ship"
+            options={[{ label: 'By Sea', value: 'sea' }, { label: 'By Air', value: 'air' }]}
 
           />
-          <CustomTextField
-            label="color"
-            value={selectedColor}
-            onChange={(e) => dispatch(setSelectedColor(e.target.value))}
-          />
-          <CustomTextField
-            label="size"
-            value={selectedSize}
-            onChange={(e) => dispatch(setSelectedSize(e.target.value))}
-          />
-          <CustomTextField
-            label="quality"
-            value={selectedQuantity}
-            onChange={(e) => dispatch(setSelectedQuantity(e.target.value))}
-            type="number"
-            inputProps={{ min: 0 }}
-          />
+          <CustomDropdown
+            label="Delivery"
+            options={[{ label: 'FOB', value: 'fob' }, { label: 'CIF', value: 'cif' }]}
 
-          <Button variant='outline' color='primary' onClick={handleAddVariation}>
-            Add Variation
-          </Button>
-
-          {
-            selectedVariation.map((variation, index) => (
-              <CustomChip
-                key={index}
-                label={`${variation.color}, ${variation.size},${variation.quantity} --- ${index}`}
-                onDelete={() => handleRemoveVariation(index)}
-              />
-            ))
-          }
+          />
         </Grid>
+        <Button variant="contained" color="primary" sx={{ marginTop: 2 }}>
+          Submit Quotation Request
+        </Button>
       </Grid>
 
     </div >
