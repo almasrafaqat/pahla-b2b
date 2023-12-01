@@ -1,7 +1,8 @@
 import React from 'react'
-import { QuotationBody, QuotationContainer, QuotationHeader, QuotationHeading, QuotationSection } from './quotation.-request.style'
+import { QuotationBody, QuotationContainer, QuotationHeader, QuotationHeading, QuotationIconBox, QuotationSection } from './quotation.-request.style'
 import FormComponent from '../form/form.component';
 import { useGlobalState } from '../../context/GlobalStates';
+import { QuotationIcon } from '../../globalStyle';
 
 
 
@@ -13,7 +14,10 @@ const QuotationRequest = () => {
     <QuotationSection>
       <QuotationContainer>
         <QuotationHeader>
-          <img src='./img/rfq.png' alt='rfq' width="50px" />
+          <QuotationIconBox>
+            <span>RF</span>
+            <QuotationIcon style={{fontSize: "10px!important"}}/>
+          </QuotationIconBox>
           <QuotationHeading>
             Request for Quotation
           </QuotationHeading>
