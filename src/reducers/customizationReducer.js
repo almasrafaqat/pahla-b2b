@@ -6,8 +6,8 @@ const customizationSlice = createSlice({
   initialState: {
     // Define your initial state here
     selectedProducts: [],
-    selectedSize: '',
-    selectedColor: '',
+    selectedSize: 'small',
+    selectedColor: 'black',
     selectedQuantity: 1,
     selectedVariation: [],
     selectedCountry: '',

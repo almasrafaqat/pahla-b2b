@@ -3,18 +3,10 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import styled from 'styled-components';
-import { useDispatch } from 'react-redux';
-import { setSelectedCountry } from '../../reducers/customizationReducer';
 
-const Container = styled.div`
+const Container = styled.div``;
 
-`;
-
-export default function CountrySelect({ value, onChange }) {
-  const dispatch = useDispatch();
-   const handleCountrySelectChange = (event, country) => (
-    dispatch(setSelectedCountry(country))
-  );
+export default function CountrySelect({ value, name, onChange }) {
  
   return (
     <Container>
@@ -22,8 +14,10 @@ export default function CountrySelect({ value, onChange }) {
         options={countries}
         autoHighlight
         getOptionLabel={(option) => option.label}
-        
-        onChange={handleCountrySelectChange}
+        sx={{ marginTop: 2 }}
+        name={name}
+        onChange={onChange}
+        value={value}
         renderOption={(props, option) => (
 
           <Box component="li" sx={{ '& > img': { mr: 2, flexShrink: 0 } }} {...props}>
@@ -42,7 +36,7 @@ export default function CountrySelect({ value, onChange }) {
           <TextField
             {...params}
             sx={{ height: "10%" }}
-            label="Choose a country"
+            label="Choose a country *"
             inputProps={{
               ...params.inputProps,
               autoComplete: 'new-password', // disable autocomplete and autofill
