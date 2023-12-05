@@ -9,14 +9,14 @@ import {
   MenuItem,
   InputLabel,
   FormControl,
-  Select
-
-
+  Select,
 } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateFormData, updateFormErrors, submitData, addVariation, resetFormData } from '../../reducers/quotationReducer';
+import { updateFormData, updateFormErrors, addVariation, submitQuotaion } from '../../reducers/quotationReducer';
 import CountrySelect from '../country-list/country-list.component';
 import { parsePhoneNumber } from 'libphonenumber-js';
+import ToasterComponent from '../toaster-component/toaster.component';
+
 
 
 
@@ -36,12 +36,13 @@ const CustomTextField = ({ label, value, onChange, type = 'text', validation, ..
   </FormControl>
 )
 
-const CustomDropdown = ({ label, value, validation, onChange, options, multiple, renderValue }) => {
+const CustomDropdown = ({ label, value, name, validation, onChange, options, multiple, renderValue }) => {
   return (
     <FormControl fullWidth style={{ marginTop: 20 }}>
       <InputLabel id={`${label.toLowerCase()}-label`}>{label}</InputLabel>
       <Select
         labelId={`${label.toLowerCase()}-label`}
+        name={name}
         value={value}
         label={label}
         onChange={onChange}
@@ -89,21 +90,12 @@ const QuotationForm = ({ products }) => {
   };
 
 
-
   const handleCountryChange = (event, selectedCountry) => {
     dispatch(updateFormData({ selectedCountry }));
   };
 
   const colors = ['Red', 'Blue', 'Green', 'Yellow'].map((color) => ({ label: color, value: color }));
   const sizes = ['Small', 'Medium', 'Large', 'XL'].map((size) => ({ label: size, value: size }));
-
-  const handleColorChange = (event, color) => {
-    dispatch(updateFormData({ color: event.target.value }));
-  };
-  const handleSizeChange = (event, size) => {
-    dispatch(updateFormData({ size: event.target.value }));
-
-  }
 
   const handleAddVariation = () => {
     // Check if all required fields are selected
@@ -116,10 +108,8 @@ const QuotationForm = ({ products }) => {
         size: formData.size,
         quantity: formData.quantity,
       }
-
       // Dispatch an action to add the new product to the array in the state
       dispatch(addVariation([...selectedVariation, newVariation]));
-
       // Reset the selected values in the form
       dispatch(updateFormData({
         color: '',
@@ -128,10 +118,7 @@ const QuotationForm = ({ products }) => {
       }));
     } else {
       // Handle error or display a message if required fields are not selected
-      console.log("Please select Product, Color, Size, Quantity");
-
       dispatch(updateFormErrors({ isVariaton: 'Please select size, color, quantity' }));
-
     }
   };
 
@@ -143,6 +130,7 @@ const QuotationForm = ({ products }) => {
 
   /**Form Submit */
   const handleSubmit = () => {
+
 
     const isEmailValid = (email) => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -187,21 +175,16 @@ const QuotationForm = ({ products }) => {
 
     //If no errors, submit the data
     if (Object.keys(errors).length === 0) {
-      // dispatch(submitData(formData));
-      dispatch(submitData({ formData, selectedVariation }));
+      const allData = { ...formData, selectedVariation };
+      dispatch(submitQuotaion(allData))
 
-      dispatch(resetFormData());
-      dispatch(addVariation());
     }
-
-
-
-
 
   };
 
   return (
     <div>
+
       <Grid container spacing={2} paddingBottom={5} marginBottom={2}>
         <Grid item xs={12} md={6}>
           <CustomTextField
@@ -223,7 +206,6 @@ const QuotationForm = ({ products }) => {
           />
           <div>
             <CountrySelect
-              name="selectedCountry"
               onChange={handleCountryChange}
             />
             {formErrors.selectedCountry && <p style={{ margin: 5, color: 'red' }}>{formErrors.selectedCountry}</p>}
@@ -312,16 +294,18 @@ const QuotationForm = ({ products }) => {
 
           <CustomDropdown
             label="size"
+            name="size"
             options={sizes}
             value={formData.size || ''}
-            onChange={handleSizeChange}
+            onChange={handleChange}
           />
 
           <CustomDropdown
             label="color"
+            name="color"
             options={colors}
             value={formData.color || ''}
-            onChange={handleColorChange}
+            onChange={handleChange}
             validation={formErrors.color && formErrors.color}
           />
 
@@ -354,6 +338,7 @@ const QuotationForm = ({ products }) => {
       <Button onClick={handleSubmit} variant="contained" color="primary" sx={{ marginTop: 2 }}>
         Submit Quotation Request
       </Button>
+      <ToasterComponent />
     </div>
   )
 }
